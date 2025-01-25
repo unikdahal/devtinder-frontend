@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
     return (
@@ -9,11 +10,11 @@ const NavBar = () => {
                 </a>
 
                 <div className="shrink-0 hidden md:flex gap-2 mx-5">
-                    <a className="btn btn-sm btn-ghost">Create Account</a>
-                    <a className="btn btn-sm btn-primary">
+                    <Link className="btn btn-sm btn-ghost" to={"/signup"}>Create Account</Link>
+                    <Link className="btn btn-sm btn-primary" to={"/login"}>
                         Log in
                         <i className="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="dropdown dropdown-end md:hidden">

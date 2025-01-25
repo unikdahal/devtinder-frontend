@@ -1,14 +1,21 @@
 import {useState} from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {Link, useNavigate} from "react-router-dom";
+import {addUser} from "../utils/userSlice.js";
 
 const Login = () => {
     const [email, setEmail] = useState("unik@gmail.com");
-    const [password, setPassword] = useState("unik123");
+    const [password, setPassword] = useState("Unik@123");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            await axios.post("http://localhost:3000/auth/login", {email, password},{withCredentials: true});
+            const res = await axios.post("http://localhost:3000/auth/login", {email, password},{withCredentials: true});
             console.log("Logged in successfully")
+            dispatch(addUser(res.data));
+            return navigate("/");
         } catch (error) {
             // TBD Handle Error properly
             console.log(error)
@@ -21,12 +28,12 @@ const Login = () => {
 
             <span className="self-center">
                     Don&#39;t have an account?&nbsp;&nbsp;
-                <a className="link link-secondary hover:font-bold">Register</a>
+                <Link className="link link-secondary hover:font-bold" to={"/signup"}>Register</Link>
                 </span>
 
             <a className="btn btn-neutral bg-neutral-content hover:bg-secondary-content">
                 <i className="fa-brands fa-google text-primary"></i>
-                Log in with Google
+                <span>Log in with Google</span>
             </a>
 
             <div className="divider">OR</div>
@@ -50,7 +57,7 @@ const Login = () => {
                        className="input input-bordered mt-2"/>
             </label>
 
-            <button className="btn btn-primary" onClick={handleLogin}>Log in</button>
+            <button className="btn btn-primary mt-3" onClick={handleLogin}>Log in</button>
         </div>
     </div>)
 }
