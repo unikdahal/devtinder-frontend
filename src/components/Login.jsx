@@ -15,7 +15,7 @@ const Login = () => {
             const res = await axios.post("http://localhost:3000/auth/login", {email, password},{withCredentials: true});
             console.log("Logged in successfully")
             dispatch(addUser(res.data));
-            return navigate("/");
+            return navigate("/feed");
         } catch (error) {
             // TBD Handle Error properly
             console.log(error)

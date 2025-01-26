@@ -8,7 +8,7 @@ const Footer = () => {
                     <a className="btn btn-ghost text-lg">
                         <img alt="Logo" src={logo} className="w-50"/>
                     </a>
-                    <p>Copyright © 2025 - All rights reserved</p>
+                    <p>Copyright ©{new Date().getFullYear()} - All rights reserved</p>
                 </aside>
             </footer>
         </>
