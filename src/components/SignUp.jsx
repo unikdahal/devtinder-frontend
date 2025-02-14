@@ -61,6 +61,10 @@ const SignUp = () => {
         }
     };
 
+    const handleGoogleSignUp = () => {
+        window.location.href = "http://localhost:3000/auth/google/login";
+    };
+
     return (
         <div className="flex justify-center items-center min-h-screen w-full">
             <form className="flex flex-col gap-4 rounded-box bg-base-200 p-6 max-w-md" onSubmit={handleSubmit}>
@@ -71,9 +75,9 @@ const SignUp = () => {
                     <Link className="link link-secondary hover:font-bold" to={"/login"}>Log in</Link>
                 </span>
 
-                <a className="btn btn-neutral bg-neutral-content hover:bg-secondary-content">
+                <a className="btn btn-neutral bg-neutral-content hover:bg-secondary-content" onClick={handleGoogleSignUp}>
                     <i className="fa-brands fa-google text-primary"></i>
-                    <span>Sign Up with Google</span>
+                    <span>Sign up with Google</span>
                 </a>
 
                 <div className="divider my-0">OR</div>

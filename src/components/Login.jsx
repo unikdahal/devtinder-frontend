@@ -16,11 +16,15 @@ const Login = () => {
             console.log("Logged in successfully")
             dispatch(addUser(res.data));
             return navigate("/feed");
-        } catch (error) {
+        }catch (error) {
             // TBD Handle Error properly
             console.log(error)
         }
     }
+
+    const handleGoogleLogin = () => {
+        window.location.href = "http://localhost:3000/auth/google/login";
+    };
 
     return (<div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col gap-4 rounded-box bg-base-200 p-6 max-w-md">
@@ -31,7 +35,7 @@ const Login = () => {
                 <Link className="link link-secondary hover:font-bold" to={"/signup"}>Register</Link>
                 </span>
 
-            <a className="btn btn-neutral bg-neutral-content hover:bg-secondary-content">
+            <a className="btn btn-neutral bg-neutral-content hover:bg-secondary-content" onClick={handleGoogleLogin}>
                 <i className="fa-brands fa-google text-primary"></i>
                 <span>Log in with Google</span>
             </a>

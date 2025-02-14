@@ -11,27 +11,34 @@ const Feed = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [noMoreUsers, setNoMoreUsers] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getFeed = async () => {
         try {
             const res = await axios.get("http://localhost:3000/user/feed", { withCredentials: true });
-            console.log(res);
             if (res.data.length === 0) {
                 setNoMoreUsers(true);
             } else {
                 dispatch(addFeed(res.data));
             }
         } catch (error) {
-            console.log(error);
+            console.error('Feed Error:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
         if (!user) {
-            return navigate("/login");
+            navigate("/login");
+            return;
         }
         getFeed();
-    }, [user, navigate]);
+    }, [user]);
+
+    if (isLoading) {
+        return <div className="flex justify-center items-center min-h-screen">Loading feed...</div>;
+    }
 
     return (
         <div className="flex justify-center my-10">
